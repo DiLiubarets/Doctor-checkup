@@ -23,7 +23,7 @@ Appointify: An Open Source project for booking doctor's appointments. With Appoi
 
 ### Clone
 
-- Clone this repo to your local machine using `https://github.com/a-mccaffrey/covid-doctor-checkup.git`
+- Clone this repo to your local machine using `https://github.com/DiLiubarets/covid-doctor-checkup.git`
 
 ### Setup
 
@@ -44,7 +44,7 @@ In your config.json file, you'll need to enter your MySQL credentials. We would 
 
 You can sign up, log in, and check out the COVID-19 tracker from there.
 
-You can also visit the deployed application on Heroku at: 
+You can also visit the deployed application on [Heroku](https://floating-inlet-71164.herokuapp.com)
 
 
 ## License
@@ -62,7 +62,7 @@ This project is under the MIT license. For full license information, please [cli
     - 🍴 Fork this repo!
 
 - **Option 2**
-    - 👯 Clone this repo to your local machine using `https://github.com/a-mccaffrey/covid-doctor-checkup.git`
+    - 👯 Clone this repo to your local machine using `https://github.com/DiLiubarets/covid-doctor-checkup`
 
 ### Step 2
 
@@ -70,7 +70,7 @@ This project is under the MIT license. For full license information, please [cli
 
 ### Step 3
 
-- 🔃 Create a new pull request using <a href="https://github.com/a-mccaffrey/covid-doctor-checkup/compare/" target="_blank">`https://github.com/a-mccaffrey/covid-doctor-checkup/compare/`</a>.
+- 🔃 Create a new pull request using <a href="https://github.com/DiLiubarets/covid-doctor-checkup/compare/" target="_blank">`https://github.com/DiLiubarets/covid-doctor-checkup/compare/`</a>.
 
 
 ## Questions
