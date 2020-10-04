@@ -1,8 +1,8 @@
 ![GitHub](https://img.shields.io/github/license/a-mccaffrey/covid-doctor-checkup)
 
-# covid-doctor-checkup
+# Doctor-checkup
 
-##Live Demo: (https://floating-inlet-71164.herokuapp.com)
+## [Live Demo] (https://floating-inlet-71164.herokuapp.com)
 ## Description
 
 Appointify: An Open Source project for booking doctor's appointments. With Appointify, you can pick the doctor you want to see and make an appointment with them easily. We are also providing up-to-date information on the COVID-19 statistics for Canada through an API.
