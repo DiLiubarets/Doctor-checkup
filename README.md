@@ -1,4 +1,4 @@
-![GitHub](https://img.shields.io/github/license/a-mccaffrey/covid-doctor-checkup)
+![GitHub](https://img.shields.io/github/license/DiLiubarets/covid-doctor-checkup)
 
 # Doctor-checkup
 
@@ -75,7 +75,7 @@ This project is under the MIT license. For full license information, please [cli
 
 ## Questions
 
-Want to know more? Look us up on GitHub. Our usernames are:
+On project worked:
 
 * a-mccaffrey | profile [here](https://www.github.com/a-mccaffrey)
 * DiLiubarets | profile [here](https://github.com/DiLiubarets)
