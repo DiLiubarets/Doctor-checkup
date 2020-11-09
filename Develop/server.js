@@ -24,6 +24,7 @@ app.get("/tracker", (req, res) => res.render("tracker", { layout: "main" }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 //Set static folder
 app.use(express.static("public"));
 // We need to use sessions to keep track of our user's login status

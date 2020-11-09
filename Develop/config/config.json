@@ -1,19 +1,19 @@
 {
   "development": {
     "username": "root",
-    "password": "Ukrayina91",
+    "password": "null",
     "database": "docApp_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
   "test": {
     "username": "root",
-    "password": "Ukrayina91",
+    "password": "null",
     "database": "docApp_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
   },
-  
+
   "production": {
     "dialect": "mysql",
     "use_env_variable": "JAWSDB_URL"
