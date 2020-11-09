@@ -1,8 +1,8 @@
 /* Created with Themestr.app */
 /*! `Custom` Bootstrap 4 theme */
 @import url(https://use.fontawesome.com/releases/v5.0.10/css/all.css);
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap'); 
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 /*!
  * Bootstrap v4.5.0 (https://getbootstrap.com/)
  * Copyright 2011-2020 The Bootstrap Authors
@@ -36,8 +36,9 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
-  --font-family-sans-serif: "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-family-sans-serif: "Roboto", "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
 }
@@ -66,9 +67,8 @@ section {
 }
 body {
   margin: 0;
-  font-family: "Roboto",
-    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
-    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Roboto", "Helvetica Neue", Arial, "Noto Sans", sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -7907,43 +7907,43 @@ a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-.darkmode--activated .border-primary{
+.darkmode--activated .border-primary {
   background-color: #120309 !important;
   border-color: #fff !important;
 }
-.darkmode--activated .text-primary, .darkmode--activated .text-center{
+.darkmode--activated .text-primary,
+.darkmode--activated .text-center {
   color: #fff !important;
 }
-.darkmode--activated .text-success{
+.darkmode--activated .text-success {
   color: #424242 !important;
 }
-.darkmode--activated .bg-primary{
+.darkmode--activated .bg-primary {
   background-color: #000000 !important;
   border-color: #000000 !important;
 }
-.darkmode--activated .navbar{
-  background-image: linear-gradient(to right,#000000,#424242);
+.darkmode--activated .navbar {
+  background-image: linear-gradient(to right, #000000, #424242);
 }
-.darkmode--activated .btn{
+.darkmode--activated .btn {
   color: #fff !important;
   background-color: #000000 !important;
   border-color: #fff !important;
 }
-.darkmode--activated .btn:hover{
+.darkmode--activated .btn:hover {
   color: #000000 !important;
   background-color: #fff !important;
   border-color: #000000 !important;
 }
-.darkmode--activated .nav-link{
-  color:#fff;
+.darkmode--activated .nav-link {
+  color: #fff;
 }
-.darkmode--activated .card .bg-success{
+.darkmode--activated .card .bg-success {
   /* background-image: linear-gradient(to right,#000000,#424242); */
   background-color: #000000 !important;
   border-color: #ffffff !important;
 }
-.darkmode--activated .border-success{
+.darkmode--activated .border-success {
   background-color: #000000 !important;
-  border-color:#000000 !important;
+  border-color: #000000 !important;
 }
-

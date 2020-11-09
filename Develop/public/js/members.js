@@ -23,9 +23,7 @@ const userHeader = $(".userHeader");
 const doctorScheduleSelect = $("#doctorScheduleSelect");
 const apptContainer = $("#appointment-form");
 
-
 $(document).ready(function () {
-
   getUserData();
 
   function getUserData() {
@@ -48,7 +46,7 @@ $(document).ready(function () {
         getDoctors(role);
       }
       if (role == "admin") {
-        getPatients(role)
+        getPatients(role);
       }
     });
   }
@@ -77,7 +75,7 @@ $(document).ready(function () {
             );
           }
         }
-        if(data.role == "doctor"){
+        if (data.role == "doctor") {
           userHeader.html(
             "<h4 class='mt-3'>Please manage your upcoming appointments and schedule below.</h4>"
           );
@@ -108,7 +106,7 @@ $(document).ready(function () {
     if (doctorSchedule.length > 0) {
       exists = true;
     } else {
-      doctorSchedule = []
+      doctorSchedule = [];
     }
 
     $.get("/api/getWorkingData").then(function (data) {
@@ -121,22 +119,30 @@ $(document).ready(function () {
           doctorSchedule.push(JSON.parse(JSON.stringify(obj)));
         }
 
-        doctorScheduleSelect.append(`<div class='col my-2'><div class='card bg-light border-success h-100'><div class='card-body text-success'><h5 class='card-title font-weight-bold'>${day}</h5><div id='doctorSchedule${day}'></div></div></div></div>`);
+        doctorScheduleSelect.append(
+          `<div class='col my-2'><div class='card bg-light border-success h-100'><div class='card-body text-success'><h5 class='card-title font-weight-bold'>${day}</h5><div id='doctorSchedule${day}'></div></div></div></div>`
+        );
         for (hour of data.workingHours) {
           $(`#doctorSchedule${day}`).append(`
           <div class="form-check" >
-          <input type="checkbox" class="form-check-input" id=${day + "_" + hour.hour}>
-          <label class="form-check-label" for=${day} value=${hour.hour}>${hour.name}</label>
+          <input type="checkbox" class="form-check-input" id=${
+            day + "_" + hour.hour
+          }>
+          <label class="form-check-label" for=${day} value=${hour.hour}>${
+            hour.name
+          }</label>
         </div>`);
-        };
-      };
+        }
+      }
 
       doctorScheduleSelect.append(
         "<div class='row'><div class='col m-3'><button class='btn btn-success' id='scheduleSubmit'>Submit schedule</button></div></div>"
       );
 
       if (role == "admin") {
-        userContainer.append("<div class='row'><div class='col m-3'><button class='btn btn-success' id='back'>Back</button></div></div>");
+        userContainer.append(
+          "<div class='row'><div class='col m-3'><button class='btn btn-success' id='back'>Back</button></div></div>"
+        );
       }
 
       applySchedule(doctorSchedule);
@@ -176,65 +182,71 @@ $(document).ready(function () {
       });
 
       function createSubmitObject(doctorSchedule) {
-        let doctorID = ""
+        let doctorID = "";
         if (role == "doctor") {
-          doctorID = appointmentData.clientID
+          doctorID = appointmentData.clientID;
         }
         if (role == "admin") {
-          doctorID = appointmentData.doctorID
+          doctorID = appointmentData.doctorID;
         }
-        
+
         let obj = {
           schedule: JSON.stringify(doctorSchedule),
-          doctorID: doctorID
-        }
-        return obj
+          doctorID: doctorID,
+        };
+        return obj;
       }
 
       $("#scheduleSubmit").on("click", () => {
-        $.post("/api/submitDoctorSchedule", createSubmitObject(doctorSchedule)).then(function (data) {
+        $.post(
+          "/api/submitDoctorSchedule",
+          createSubmitObject(doctorSchedule)
+        ).then(function (data) {
           doctorScheduleSelect.append(
-            "<div class='row'><div class='col m-3'><h3 class='text-success font-weight-bold'>"+ data + "</h2></div></div>");
+            "<div class='row'><div class='col m-3'><h3 class='text-success font-weight-bold'>" +
+              data +
+              "</h2></div></div>"
+          );
         });
       });
     });
   }
 
   function getDoctors(role) {
-      let buttonText = "Book now";
+    let buttonText = "Book now";
 
-      if (role == "admin") {
-        buttonText = "View";
-      }
+    if (role == "admin") {
+      buttonText = "View";
+    }
 
-      $.get("/api/getdoctors").then(function (data) {
-        doctorArray = data;
-        for (doctor of data) {
-          if (role == "admin") {
-            userContainer.append(
-              "<div class='col my-2'><div class='card bg-success h-100'><div id='showdocs' class='card-body text-light'><h5 class='card-title font-weight-bold'>" +
-                doctor.name +
-                "</h5><p>Gender: " +
-                doctor.gender +
-                "</p><p>Province: " +
-                doctor.province +
-                "</p><p>Email: <a class='text-warning' href=mailto:" +
-                doctor.email +
-                ">" +
-                doctor.email +
-                "</a></p><p>Phone number: <a class='text-warning' href=tel:" +
-                doctor.phone +
-                "> " +
-                doctor.phone +
-                "</a></p><button class='booknow btn btn-outline-light'id=" +
-                doctor.name +
-                " value=" +
-                doctor.id +
-                "> View </button><button class='btn btn-outline-light'id='deleteUser'value=" +
-                doctor.id +
-                "> Delete </button></div></div></div>"
-            );
-          } else {
+    $.get("/api/getdoctors").then(function (data) {
+      doctorArray = data;
+      for (doctor of data) {
+        if (role == "admin") {
+          userContainer.append(
+            "<div class='col my-2'><div class='card bg-success h-100'><div id='showdocs' class='card-body text-light'><h5 class='card-title font-weight-bold'>" +
+              doctor.name +
+              "</h5><p>Gender: " +
+              doctor.gender +
+              "</p><p>Province: " +
+              doctor.province +
+              "</p><p>Email: <a class='text-warning' href=mailto:" +
+              doctor.email +
+              ">" +
+              doctor.email +
+              "</a></p><p>Phone number: <a class='text-warning' href=tel:" +
+              doctor.phone +
+              "> " +
+              doctor.phone +
+              "</a></p><button class='booknow btn btn-outline-light'id=" +
+              doctor.name +
+              " value=" +
+              doctor.id +
+              "> View </button><button class='btn btn-outline-light'id='deleteUser'value=" +
+              doctor.id +
+              "> Delete </button></div></div></div>"
+          );
+        } else {
           userContainer.append(
             "<div class='col my-2'><div class='card bg-success h-100'><div id='showdocs' class='card-body text-light'><h5 class='card-title font-weight-bold'>" +
               doctor.name +
@@ -260,34 +272,33 @@ $(document).ready(function () {
           );
         }
       }
-      }); 
+    });
   }
 
   function getPatients(role) {
     if (role == "admin") {
       $.get("/api/getPatient").then(function (data) {
         for (patient of data) {
-          
-            userContainer.append(
-              "<div class='col my-2'><div class='card border-success p-2 mt-2 mb-5'><div id='showdocs' class='card-body text-success'><h5 class='card-title font-weight-bold'>" +
-                patient.name +
-                "</h5><p>Gender: " +
-                patient.gender +
-                "</p><p>Province: " +
-                patient.province +
-                "</p><p>Email: <a class='.text-primary' href=mailto:" +
-                patient.email +
-                ">" +
-                patient.email +
-                "</a></p><p>Phone number: <a class='text-primary' href=tel:" +
-                patient.phone +
-                "> " +
-                patient.phone +
-                "</a></p><button class='btn btn-success'id='deleteUser'value=" +
-                patient.id +
-                "> Delete </button></div></div></div>"
-            ); 
-      }
+          userContainer.append(
+            "<div class='col my-2'><div class='card border-success p-2 mt-2 mb-5'><div id='showdocs' class='card-body text-success'><h5 class='card-title font-weight-bold'>" +
+              patient.name +
+              "</h5><p>Gender: " +
+              patient.gender +
+              "</p><p>Province: " +
+              patient.province +
+              "</p><p>Email: <a class='.text-primary' href=mailto:" +
+              patient.email +
+              ">" +
+              patient.email +
+              "</a></p><p>Phone number: <a class='text-primary' href=tel:" +
+              patient.phone +
+              "> " +
+              patient.phone +
+              "</a></p><button class='btn btn-success'id='deleteUser'value=" +
+              patient.id +
+              "> Delete </button></div></div></div>"
+          );
+        }
       });
     }
   }
@@ -301,13 +312,20 @@ $(document).ready(function () {
         for (index in daysArray) {
           userContainer.append(
             "<div class='col my-2'><div class='card bg-success h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'><button class='btn btn-outline-light' value='days' id=" +
-            index +">"+daysArray[index].name +"</button></div></div></div>"
+              index +
+              ">" +
+              daysArray[index].name +
+              "</button></div></div></div>"
           );
         }
       } else {
-        userContainer.append("<h3 class='font-weight-bold text-center'>The doctor you have chosen is unavailable on this date</h3>");
+        userContainer.append(
+          "<h3 class='font-weight-bold text-center'>The doctor you have chosen is unavailable on this date</h3>"
+        );
       }
-      userContainer.append("<div class='col my-2'><div class='card bg-primary h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'>Select a different doctor</h5><a class='btn btn-outline-light' id='back'>Go Back</a></div></div></div>");
+      userContainer.append(
+        "<div class='col my-2'><div class='card bg-primary h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'>Select a different doctor</h5><a class='btn btn-outline-light' id='back'>Go Back</a></div></div></div>"
+      );
     });
   }
 
@@ -325,21 +343,29 @@ $(document).ready(function () {
       dayOfWeek: day.name.substring(0, 3),
     }).then(function (data) {
       userContainer.append(
-        "<div class='col my-2'><div class='card bg-white border-0 h-100'><div class='card-body text-success'><h3 id='doctor-name' class='card-title font-weight-bold'>" + appointmentData.doctorName + "'s availability:</h3></div></div></div>"
+        "<div class='col my-2'><div class='card bg-white border-0 h-100'><div class='card-body text-success'><h3 id='doctor-name' class='card-title font-weight-bold'>" +
+          appointmentData.doctorName +
+          "'s availability:</h3></div></div></div>"
       );
       timeSlots = data;
       if (timeSlots.length != 0) {
         for (index in timeSlots) {
           userContainer.append(
             "<div class='col my-2'><div class='card bg-success h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'>Select this time</h5><button type='submit' class='btn btn-outline-light' value='timeslot' id=" +
-               index+
-              ">" +timeSlots[index].name+"</button></div></div></div>"
+              index +
+              ">" +
+              timeSlots[index].name +
+              "</button></div></div></div>"
           );
         }
       } else {
-        userContainer.append("<h3 class='font-weight-bold text-center'>The doctor you have chosen is unavailable on this date</h3>");
+        userContainer.append(
+          "<h3 class='font-weight-bold text-center'>The doctor you have chosen is unavailable on this date</h3>"
+        );
       }
-      userContainer.append("<div class='col my-2'><div class='card bg-primary h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'>Select a different doctor</h5><a class='btn btn-outline-light' id='back'>Go Back</a></div></div></div>");
+      userContainer.append(
+        "<div class='col my-2'><div class='card bg-primary h-100'><div class='card-body text-light'><h5 class='card-title font-weight-bold'>Select a different doctor</h5><a class='btn btn-outline-light' id='back'>Go Back</a></div></div></div>"
+      );
     });
   }
 
@@ -403,37 +429,50 @@ $(document).ready(function () {
 
   function createAppointment(appointmentData) {
     $.post("/api/createAppointment", appointmentData).then(function (data) {
-      userContainer.html("<img src='./assets/sick_teddy_bear.png' alt='A very sick teddy bear' class='card-img-top/><div class='col'><div class='card border-0'><div class='card-body'><h3 class='card-title font-weight-bold text-success text-center'>" + data + "</h3><div class='text-center'><button class='btn btn-success' id='back'>Back</button></div></div></div></div>");
+      userContainer.html(
+        "<img src='./assets/sick_teddy_bear.png' alt='A very sick teddy bear' class='card-img-top/><div class='col'><div class='card border-0'><div class='card-body'><h3 class='card-title font-weight-bold text-success text-center'>" +
+          data +
+          "</h3><div class='text-center'><button class='btn btn-success' id='back'>Back</button></div></div></div></div>"
+      );
     });
   }
 
-  function deleteUser(userID,){
+  function deleteUser(userID) {
     $.post("/api/deleteUser", {
       userID: userID,
     }).then(function (data) {
-      console.log(data)
-      userContainer.html("<h3 class='font-weight-bold text-success text-center'>" + data + "</h3>")
-      getDoctors(role)
-      getPatients(role)
+      console.log(data);
+      userContainer.html(
+        "<h3 class='font-weight-bold text-success text-center'>" +
+          data +
+          "</h3>"
+      );
+      getDoctors(role);
+      getPatients(role);
     });
   }
 
-  function deleteAppointment(appointmentID){
+  function deleteAppointment(appointmentID) {
     $.post("/api/deleteAppointment", {
       appointmentID: appointmentID,
     }).then(function (data) {
-      console.log(data)
-      userContainer.html("<h3 class='font-weight-bold text-success text-center'>" + data + "</h3>")
+      console.log(data);
+      userContainer.html(
+        "<h3 class='font-weight-bold text-success text-center'>" +
+          data +
+          "</h3>"
+      );
       if (role == "admin") {
-        userContainer.append("<div class='row'><div class='col m-3'><button class='btn btn-success' id='back'>Back</button></div></div>");
+        userContainer.append(
+          "<div class='row'><div class='col m-3'><button class='btn btn-success' id='back'>Back</button></div></div>"
+        );
       }
-      getAppointments(role, appointmentData.clientID)
+      getAppointments(role, appointmentData.clientID);
     });
   }
 
   userContainer.on("click", (event) => {
     if (role === "patient" || role === "admin") {
-
       if ($(event.target).attr("class") == "booknow btn btn-outline-light") {
         if (role == "patient") {
           appointmentData.doctorID = event.target.value;
@@ -442,15 +481,14 @@ $(document).ready(function () {
         }
         if (role === "admin") {
           userContainer.html("");
-          appointmentData.doctorID = event.target.value
+          appointmentData.doctorID = event.target.value;
           $.post("/api/getDoctorSchedule", {
             doctorID: appointmentData.doctorID,
           }).then(function (data) {
-            let doctorSchedule = data
+            let doctorSchedule = data;
             getWorkingData(doctorSchedule);
-            getAppointments(role, appointmentData.doctorID)
+            getAppointments(role, appointmentData.doctorID);
           });
-
         }
       }
 
@@ -470,23 +508,23 @@ $(document).ready(function () {
       if (event.target.id == "back") {
         apptContainer.html("");
         userContainer.html("");
-        doctorScheduleSelect.html("")
+        doctorScheduleSelect.html("");
         getDoctors(role);
-        getPatients(role)
+        getPatients(role);
         if (role != "admin") {
           getAppointments(role, appointmentData.clientID);
         }
         return;
       }
-      if (event.target.id == "deleteUser"){
-        let userID = event.target.value
-        deleteUser(userID)
+      if (event.target.id == "deleteUser") {
+        let userID = event.target.value;
+        deleteUser(userID);
       }
     }
-    if (event.target.id == "deleteAppointment"){
-      console.log("works")
-      let appointmentID = event.target.value
-      deleteAppointment(appointmentID)
+    if (event.target.id == "deleteAppointment") {
+      console.log("works");
+      let appointmentID = event.target.value;
+      deleteAppointment(appointmentID);
     }
   });
 });
@@ -509,5 +547,3 @@ function showMedication() {
     medicationList.style.display = "none";
   }
 }
-
-

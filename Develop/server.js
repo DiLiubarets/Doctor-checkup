@@ -12,15 +12,15 @@ var db = require("./models");
 // Creating express app and configuring middleware needed for authentication
 var app = express();
 // Handlebars
-app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
-app.set('view engine', 'handlebars');
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // // Index route
-app.get('/', (req, res) => res.render('landing', { layout: 'main' }));
-app.get('/login', (req, res) => res.render('login', { layout: 'main' }));
-app.get('/members', (req, res) => res.render('members', { layout: 'main' }));
-app.get('/signup', (req, res) => res.render('signup', { layout: 'main' }));
-app.get('/tracker', (req, res) => res.render('tracker', { layout: 'main' }));
+app.get("/", (req, res) => res.render("landing", { layout: "main" }));
+app.get("/login", (req, res) => res.render("login", { layout: "main" }));
+app.get("/members", (req, res) => res.render("members", { layout: "main" }));
+app.get("/signup", (req, res) => res.render("signup", { layout: "main" }));
+app.get("/tracker", (req, res) => res.render("tracker", { layout: "main" }));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -54,7 +54,7 @@ db.sequelize.sync().then(function () {
     );
 
     create(
-      "diana.liubarets@gmail.com",
+      "client@gmail.com",
       "12345",
       "patient",
       "Dina Liu",
@@ -104,7 +104,7 @@ db.sequelize.sync().then(function () {
       schedule
     );
     create(
-      "smitm@gmail.com",
+      "doctor@gmail.com",
       "12345",
       "doctor",
       "Dr. Morne Smit",

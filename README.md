@@ -54,7 +54,12 @@ This project is under the MIT license. For full license information, please [cli
 
 ## Contributing
 
-> To get started...
+> Login admin: "admin@gmail.com", password: "admin",
+> Login doctor:  "doctor@gmail.com", password: "12345",
+> Login client: "client@gmail.com:, password: "12345".
+> Register doctor you need a clinic password: "12345"
+      ,
+      
 
 ### Step 1
 

@@ -7,12 +7,12 @@ $(document).ready(function () {
   var nameInput = $("#name");
   var genderInput = $("#gender");
   var provinceInput = $("#province");
-  var phoneInput = $("#phone")
+  var phoneInput = $("#phone");
 
-  var clinicPasswordInput = $("#passwordClinic")
-  var tab = $("#myTab")
+  var clinicPasswordInput = $("#passwordClinic");
+  var tab = $("#myTab");
 
-  let role = "patient"
+  let role = "patient";
 
   // When the signup button is clicked, we validate the email and password are not blank
   signUpForm.on("submit", function (event) {
@@ -27,28 +27,34 @@ $(document).ready(function () {
     };
 
     if (clinicPasswordInput.val()) {
-      userData.clinicPassword = clinicPasswordInput.val().trim()
-    }
-    else {
-      userData.clinicPassword = ""
+      userData.clinicPassword = clinicPasswordInput.val().trim();
+    } else {
+      userData.clinicPassword = "";
     }
 
     if (!userData.email || !userData.password) {
       return;
     }
 
-    console.log("works")
-
+    console.log("works");
 
     // If we have an email and password, run the signUpUser function
-    signUpUser(userData.email, userData.password, userData.clinicPassword, userData.name, userData.gender, userData.province, userData.phone);
+    signUpUser(
+      userData.email,
+      userData.password,
+      userData.clinicPassword,
+      userData.name,
+      userData.gender,
+      userData.province,
+      userData.phone
+    );
     emailInput.val("");
     passwordInput.val("");
     clinicPasswordInput.val("");
     nameInput.val("");
     genderInput.val("");
     provinceInput.val("");
-    phoneInput.val("")
+    phoneInput.val("");
   });
 
   // Does a post to the signup route. If successful, we are redirected to the members page
@@ -56,7 +62,15 @@ $(document).ready(function () {
 
   //signUpUser("dina.liubarets@gmail.com", "12345", "", "Dina", "F", "ON", "8193284965")
 
-  function signUpUser(email, password, clinicPassword, name, gender, province, phone) {
+  function signUpUser(
+    email,
+    password,
+    clinicPassword,
+    name,
+    gender,
+    province,
+    phone
+  ) {
     $.post("/api/signup", {
       email: email,
       password: password,
@@ -66,7 +80,6 @@ $(document).ready(function () {
       gender: gender,
       province: province,
       phone: phone,
-
     })
       .then(function (data) {
         window.location.replace("/members");
@@ -82,18 +95,18 @@ $(document).ready(function () {
 
   tab.on("click", (event) => {
     role = event.target.id;
-    role = role.slice(0, -4)
- 
-    console.log(role)
+    role = role.slice(0, -4);
+
+    console.log(role);
 
     if (role == "doctor") {
-      clinicPasswordContainer.html("<label for='exampleInputPassword1'>Clinic Password*</label><input type='password' class='form-control' id='passwordClinic' placeholder='Password'/>")
-      clinicPasswordInput = $("#passwordClinic")
+      clinicPasswordContainer.html(
+        "<label for='exampleInputPassword1'>Clinic Password*</label><input type='password' class='form-control' id='passwordClinic' placeholder='Password'/>"
+      );
+      clinicPasswordInput = $("#passwordClinic");
+    } else {
+      clinicPasswordContainer.html("");
     }
-    else {
-      clinicPasswordContainer.html("")
-    }
-
   });
 
   //loginUser("diana.liubarets@gmail.com", "123456");

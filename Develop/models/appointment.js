@@ -1,5 +1,5 @@
 // Creating our User model
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var Appointment = sequelize.define("Appointment", {
     // The email cannot be null, and must be a proper email before creation
     client_id: {
