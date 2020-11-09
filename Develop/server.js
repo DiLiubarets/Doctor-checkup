@@ -41,7 +41,6 @@ require("./routes/api-routes.js")(app);
 db.sequelize.sync().then(function () {
   app.listen(PORT, function () {
     let schedule = createSchedule();
-
     create(
       "admin@gmail.com",
       "admin",
