@@ -26,8 +26,6 @@ Appointify: An Open Source project for booking doctor's appointments. With Appoi
 - Clone this repo to your local machine using `https://github.com/DiLiubarets/covid-doctor-checkup.git`
 
 ### Setup
-
-
 > install npm packages
 
 ```shell
@@ -36,7 +34,7 @@ $ npm install
 
 ### What it should look like
 
-![Screenshot](screenshot.png)
+![Appointify](demo/demo.gif)
 
 ## Usage
 
